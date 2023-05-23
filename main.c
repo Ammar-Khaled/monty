@@ -37,24 +37,23 @@ void free_global_state(void)
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	size_t n_read, buf_size = 256;
-	char *opcode;
+	char *opcode, *line_read;
 	void (*opcode_function)(stack_t **stack, unsigned int line_number);
 
 	if (argc != 2)
 	{
-		dprintf(2, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
 	if (!file)
 	{
-		dprintf(2, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	initialise_global_state(file);
-	n_read = getline(&global_state.buffer, &buf_size, file);
-	while (n_read == -1)
+	line_read = fgets(global_state.buffer, 256, file);
+	while (line_read)
 	{
 		opcode = strtok(global_state.buffer, SPACE_DELIMS);
 		if (opcode && opcode[0] != '#')
@@ -62,8 +61,8 @@ int main(int argc, char *argv[])
 			opcode_function = get_opc_func(opcode);
 			if (!opcode_function)
 			{
-				dprintf(2, "L%i:", global_state.line_number);
-				dprintf(2, "unknown instruction %s\n", opcode);
+				fprintf(stderr, "L%i:", global_state.line_number);
+				fprintf(stderr, "unknown instruction %s\n", opcode);
 				free_global_state();
 				exit(EXIT_FAILURE);
 			}
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
 			opcode_function(&global_state.head, global_state.line_number);
 		}
 		global_state.line_number++;
-		n_read = getline(&global_state.buffer, &buf_size, file);
+		line_read = fgets(global_state.buffer, 256, file);
 	}
 	free_global_state();
 	return (0);

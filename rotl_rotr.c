@@ -41,6 +41,8 @@ void _rotr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tail, *pre_tail;
 
+	(void)line_number;
+
 	tail = pre_tail = *stack;
 	tail = tail->next;
 	while (tail->next)

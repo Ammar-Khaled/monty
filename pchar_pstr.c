@@ -14,14 +14,14 @@ void _pchar(stack_t **stack, unsigned int line_number)
 
 	if (!stack || !(*stack))
 	{
-		dprintf(2, "L%u: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
 	top = (*stack)->n;
 	if (top < 1 || top > 255)
 	{
-		dprintf(2, "L%u: can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -40,6 +40,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *cur;
 
+	(void)line_number;
 	cur = *stack;
 	while (cur)
 	{
