@@ -63,6 +63,10 @@ extern global_t global_state;
 
 void(*get_opc_func(char *opcode))(stack_t **stack, unsigned int line_number);
 
+/* assisting_functions */
+stack_t *pop_s(stack_t **stack);
+int get_argument(stack_t **stack, char *opcode, unsigned int line_number);
+
 /* opcode functions */
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
