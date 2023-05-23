@@ -2,10 +2,10 @@
 
 /**
  * pop_s - return the node at the beginning.
- * @stack: pointer to the head.
+ * @head: pointer to the head.
  * Return: pointer to the node or NULL.
  */
-stack_t *pop_s(stack_t **stack)
+stack_t *pop_s(stack_t **head)
 {
 	stack_t *tmp;
 

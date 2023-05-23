@@ -16,13 +16,13 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 
 	if (global_state.is_lifo == 1)
-		node = add_dnodeint(stack, atoi(*global_state.arg));
+		*stack = add_dnodeint(stack, atoi(global_state.arg));
 	else if (global_state.is_lifo == 0)
-		node = add_dnodeint_end(stack, atoi(*global_state.arg));
+		node = add_dnodeint_end(stack, atoi(global_state.arg));
 
-	if (node == NULL)
+	if (node == NULL || *stack == NULL)
 	{
-		printf("Error: allocation failed\n");
+		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 }

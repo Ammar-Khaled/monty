@@ -1,5 +1,7 @@
 #include "monty.h"
 
+global_t global_state;  /* Defining global var */
+
 /**
  * initialise_global_state - initialises global state
  * @f: input file

@@ -47,5 +47,5 @@ void _add(stack_t **stack, unsigned int line_number)
 	n1 = get_argument(stack, "add", line_number);
 	n2 = get_argument(stack, "add", line_number);
 
-	add_node(stack, n1 + n2);
+	*stack = add_dnodeint(stack, n1 + n2);
 }
