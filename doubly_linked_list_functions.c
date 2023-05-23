@@ -2,14 +2,14 @@
 
 /**
  * print_dlistint - prints all the elements of a
- * dlistint_t list
+ * stack_t list
  *
  * @h: head of the list
  * Return: the number of nodes
  */
-size_t print_dlistint(const dlistint_t *h)
+size_t print_dlistint(const stack_t *h)
 {
-	const dlistint_t *current = h;
+	const stack_t *current = h;
 	size_t count = 0;
 
 	while (current)
@@ -29,11 +29,11 @@ size_t print_dlistint(const dlistint_t *h)
  *
  * Return: the address of the new element, or NULL if it failed
  */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
-	dlistint_t *tail;
+	stack_t *tail;
 	/* Create a new node */
-	dlistint_t *new = (dlistint_t *)malloc(sizeof(dlistint_t));
+	stack_t *new = (stack_t *)malloc(sizeof(stack_t));
 
 	if (!new)
 		return (NULL);
@@ -59,17 +59,16 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 	return (new);
 }
 
-
 /**
- * add_dnodeint - adds a new node at the beginning of a dlistint_t list.
+ * add_dnodeint - adds a new node at the beginning of a stack_t list.
  * @head: head of list
  * @n: number to be added
  * Return: the address of the new element, or NULL if it failed
  */
-dlistint_t *add_dnodeint(dlistint_t **head, const int n)
+stack_t *add_dnodeint(stack_t **head, const int n)
 {
-	dlistint_t *new = malloc(sizeof(dlistint_t));
-	dlistint_t *h;
+	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *h;
 
 	if (!new)
 		return (NULL);
@@ -100,7 +99,7 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
  * free_dlistint - frees a dlistint_t list.
  * @head: pointer to the list
  */
-void free_dlistint(dlistint_t *head)
+void free_dlistint(stack_t *head)
 {
 	if (head)
 	{
