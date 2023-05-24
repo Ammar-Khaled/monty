@@ -54,7 +54,7 @@ void check_argc(int argc)
 {
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 }
