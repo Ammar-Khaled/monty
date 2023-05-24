@@ -5,7 +5,7 @@
  * @stack: head of the doubly-linked list
  * @line_number: current line number
  *
- * Description: The integer stored at the top of the stack 
+ * Description: The integer stored at the top of the stack
  * is treated as the ascii value of the character to be printed
  */
 void _pchar(stack_t **stack, unsigned int line_number)
