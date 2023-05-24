@@ -10,9 +10,7 @@ void initialise_global_state(FILE *f)
 {
 	global_state.is_lifo = 1;
 	global_state.line_number = 1;
-	global_state.arg = malloc(256 * sizeof(char));
-	if (global_state.arg == NULL)
-		printf("Error: malloc failed\n"), exit(EXIT_FAILURE);
+	global_state.arg = NULL;
 	global_state.buffer = NULL;
 	global_state.file = f;
 	global_state.head = NULL;
