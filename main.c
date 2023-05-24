@@ -11,7 +11,7 @@ void initialise_global_state(FILE *f)
 	global_state.is_lifo = 1;
 	global_state.line_number = 1;
 	global_state.arg = NULL;
-	global_state.buffer = NULL;
+	global_state.buffer = malloc(sizeof(char) * 1024 * 5);
 	global_state.file = f;
 	global_state.head = NULL;
 }
@@ -44,11 +44,7 @@ int main(int argc, char *argv[])
 	file = fopen(argv[1], "r");
 	check_file(file, argv[1]);
 	initialise_global_state(file);
-	global_state.buffer = malloc(sizeof(char) * 1024 * 5);
-/**	if (global_state.buffer == NULL)
-		printf("Error: malloc failed\n"), exit(EXIT_FAILURE);
-*/
-	line_read = fgets(global_state.buffer, 1024, file);
+	line_read = fgets(global_state.buffer, 1023 * 5, file);
 	while (line_read)
 	{
 		opcode = strtok(global_state.buffer, SPACE_DELIMS);
@@ -66,7 +62,7 @@ int main(int argc, char *argv[])
 			opcode_function(&global_state.head, global_state.line_number);
 		}
 		global_state.line_number++;
-		line_read = fgets(global_state.buffer, 1024, file);
+		line_read = fgets(global_state.buffer, 1023 * 5, file);
 	}
 	free_global_state();
 	return (0);
