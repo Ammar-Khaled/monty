@@ -45,3 +45,29 @@ int get_argument(stack_t **stack, char *opcode, unsigned int line_number)
 	free(node);
 	return (tmp);
 }
+/**
+ * check_argc - Function to check whether correct.
+ * @argc: argument count.
+ */
+
+void check_argc(int argc)
+{
+	if (argc != 2)
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+}
+/**
+ * check_file - check if the file is opened.
+ * @file: the given file.
+ * @argv: the argument to be checked.
+*/
+void check_file(FILE *file, char *argv)
+{
+	if (!file)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", argv);
+		exit(EXIT_FAILURE);
+	}
+}

@@ -40,29 +40,13 @@ int main(int argc, char *argv[])
 	char *opcode, *line_read;
 	void (*opcode_function)(stack_t **stack, unsigned int line_number);
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+	check_argc(argc);
 	file = fopen(argv[1], "r");
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	check_file(file, argv[1]);
 	initialise_global_state(file);
 	if (global_state.buffer == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		printf("Error: malloc failed\n"), exit(EXIT_FAILURE);
 	line_read = fgets(global_state.buffer, 1024, file);
-	if (global_state.buffer == NULL)
-	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	while (line_read)
 	{
 		opcode = strtok(global_state.buffer, SPACE_DELIMS);

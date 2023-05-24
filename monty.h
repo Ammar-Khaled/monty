@@ -66,6 +66,8 @@ void(*get_opc_func(char *opcode))(stack_t **stack, unsigned int line_number);
 /* assisting_functions */
 stack_t *pop_s(stack_t **stack);
 int get_argument(stack_t **stack, char *opcode, unsigned int line_number);
+void check_argc(int argc);
+void check_file(FILE *file, char *argv);
 
 /* opcode functions */
 void _push(stack_t **stack, unsigned int line_number);
