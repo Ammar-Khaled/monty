@@ -52,7 +52,17 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 	initialise_global_state(file);
+	if (global_state.buffer == NULL)
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	line_read = fgets(global_state.buffer, 1024, file);
+	if (global_state.buffer == NULL)
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	while (line_read)
 	{
 		opcode = strtok(global_state.buffer, SPACE_DELIMS);
