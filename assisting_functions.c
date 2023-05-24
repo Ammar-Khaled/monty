@@ -38,7 +38,7 @@ int get_argument(stack_t **stack, char *opcode, unsigned int line_number)
 	if (node == NULL)
 	{
 		fprintf(stderr, "L%d: can't %s, stack too short\n", line_number, opcode);
-		free_dlistint(*stack);
+		free_global_state();
 		exit(EXIT_FAILURE);
 	}
 	tmp = node->n;
