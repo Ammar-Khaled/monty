@@ -45,8 +45,9 @@ int main(int argc, char *argv[])
 	check_file(file, argv[1]);
 	initialise_global_state(file);
 	global_state.buffer = malloc(sizeof(char) * 1024 * 5);
-	if (global_state.buffer == NULL)
+/**	if (global_state.buffer == NULL)
 		printf("Error: malloc failed\n"), exit(EXIT_FAILURE);
+*/
 	line_read = fgets(global_state.buffer, 1024, file);
 	while (line_read)
 	{
