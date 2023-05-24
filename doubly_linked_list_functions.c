@@ -27,16 +27,22 @@ size_t print_dlistint(const stack_t *h)
  * @head: pointer to the pointer to the list
  * @n: number to be added
  *
- * Return: the address of the new element, or NULL if it failed
+ * Return: the head of the new list, or exit with failure
  */
 stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
-	stack_t *tail;
-	/* Create a new node */
-	stack_t *new = (stack_t *)malloc(sizeof(stack_t));
+	stack_t *tail, *new;
 
-	if (!new)
+	if (!head)
 		return (NULL);
+
+	new = (stack_t *)malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_global_state();
+		exit(EXIT_FAILURE);
+	}
 
 	new->next = NULL; /* as it will be at the end */
 	new->n = n;
@@ -56,43 +62,48 @@ stack_t *add_dnodeint_end(stack_t **head, const int n)
 		tail->next = new;
 	}
 
-	return (new);
+	return (*head);
 }
 
 /**
  * add_dnodeint - adds a new node at the beginning of a stack_t list.
  * @head: head of list
  * @n: number to be added
- * Return: the address of the new element, or NULL if it failed
+ * Return: the head of the new list, or exit with failure
  */
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
-	stack_t *new = malloc(sizeof(stack_t));
-	stack_t *h;
+	stack_t *new;
 
-	if (!new)
+	if (!head)
 		return (NULL);
+
+	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_global_state();
+		exit(EXIT_FAILURE);
+	}
 
 	new->n = n;
 	new->prev = NULL;
-	h = *head;
 
-	if (h)
+
+	if (!(*head))	 /*this is the first node*/
 	{
-		while (h->prev)
-			h = h->prev;
+		new->next = NULL;
+		*head = new;
+		return (new);
+	}
+	else
+	{
+		(*head)->prev = new;
+		new->next = *head;
+		*head = new;
 	}
 
-	new->next = h;
-
-	if (h)
-	{
-		h->prev = new;
-	}
-
-	*head = new;
-
-	return (new);
+	return (*head);
 }
 
 /**

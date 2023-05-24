@@ -7,24 +7,41 @@
 */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node;
+	int num, i, valid = 1;
 
 	if (global_state.arg == NULL)
 	{
-		printf("L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free_global_state();
 		exit(EXIT_FAILURE);
 	}
+
+	/* assert that `arg` is a valid integer */
+	if (global_state.arg[0] != '-' && !isdigit(global_state.arg[0]))
+		valid = 0;
+
+	for (i = 1; global_state.arg[i]; i++)
+	{
+		if (!isdigit(global_state.arg[i]))
+		{
+			valid = 0;
+			break;
+		}
+	}
+
+	if (!valid)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		free_global_state();
+		exit(EXIT_FAILURE);
+	}
+
+	num = atoi(global_state.arg);
 
 	if (global_state.is_lifo == 1)
-		*stack = add_dnodeint(stack, atoi(global_state.arg));
-	else if (global_state.is_lifo == 0)
-		node = add_dnodeint_end(stack, atoi(global_state.arg));
-
-	if (node == NULL || *stack == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		add_dnodeint(stack, num);
+	else
+		add_dnodeint_end(stack, num);
 }
 
 /**

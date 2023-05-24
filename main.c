@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 			opcode_function(&global_state.head, global_state.line_number);
 		}
 		global_state.line_number++;
-		line_read = fgets(global_state.buffer, 1023 * 5, file);
+		line_read = fgets(global_state.buffer, 1024, file);
 	}
 	free_global_state();
 	return (0);
