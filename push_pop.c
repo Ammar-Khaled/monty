@@ -46,7 +46,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 
 	if (node == NULL)
 	{
-		printf("L%d: can't pop an empty %s\n", line_number, flag);
+		fprintf(stderr, "L%d: can't pop an empty %s\n", line_number, flag);
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}

@@ -24,7 +24,7 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	node = add_dnodeint_end(stack, top->n);
 	if (node == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	free(top);
@@ -54,7 +54,7 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	*stack = add_dnodeint(stack, tail->n);
 	if (*stack == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 

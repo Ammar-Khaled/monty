@@ -17,7 +17,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 
 	if (!stack || !(*stack))
 	{
-		printf("L%d: can't swap, %s too short\n", line_number, flag);
+		fprintf(stderr, "L%d: can't swap, %s too short\n", line_number, flag);
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
@@ -26,7 +26,7 @@ void _swap(stack_t **stack, unsigned int line_number)
 
 	if ((*stack)->next == NULL)
 	{
-		printf("L%d: can't swap, %s too short\n", line_number, flag);
+		fprintf(stderr, "L%d: can't swap, %s too short\n", line_number, flag);
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
