@@ -1,28 +1,6 @@
 #include "monty.h"
 
 /**
- * print_dlistint - prints all the elements of a
- * stack_t list
- *
- * @h: head of the list
- * Return: the number of nodes
- */
-size_t print_dlistint(const stack_t *h)
-{
-	const stack_t *current = h;
-	size_t count = 0;
-
-	while (current)
-	{
-		printf("%i\n", current->n);
-		count++;
-		current = current->next;
-	}
-
-	return (count);
-}
-
-/**
  * add_dnodeint_end - adds a new node at the end of a dlistint_t list.
  * @head: pointer to the pointer to the list
  * @n: number to be added
@@ -92,9 +70,8 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 
 	if (!(*head))	 /*this is the first node*/
 	{
-		new->next = NULL;
+		new->next = *head;
 		*head = new;
-		return (new);
 	}
 	else
 	{

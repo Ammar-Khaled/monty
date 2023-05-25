@@ -10,7 +10,7 @@
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top, *node;
+	stack_t *top;
 
 	(void)line_number;
 
@@ -21,12 +21,8 @@ void _rotl(stack_t **stack, unsigned int line_number)
 		return;
 
 	top = pop_s(stack);
-	node = add_dnodeint_end(stack, top->n);
-	if (node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+	add_dnodeint_end(stack, top->n);
+
 	free(top);
 }
 
@@ -44,21 +40,18 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	tail = pre_tail = *stack;
-	tail = tail->next;
+
+	if (tail->next)
+		tail = tail->next;
+
 	while (tail->next)
 	{
 		tail = tail->next;
 		pre_tail = pre_tail->next;
 	}
 
-	*stack = add_dnodeint(stack, tail->n);
-	if (*stack == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	tail->prev = NULL;
-	free(pre_tail->next);
+	add_dnodeint(stack, tail->n);
+	
+	free(tail);
 	pre_tail->next = NULL;
 }
