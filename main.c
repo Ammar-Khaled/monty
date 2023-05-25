@@ -37,18 +37,18 @@ void free_global_state(void)
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	char *opcode;
-	int line_read;
+	char *opcode, *line_read;
 	void (*opcode_function)(stack_t **stack, unsigned int line_number);
-	size_t size = 256;
 
 	check_argc(argc);
 	file = fopen(argv[1], "r");
 	check_file(file, argv[1]);
 	initialise_global_state(file);
-	
-	line_read = getline(&global_state.buffer, &size, file);
-	while (line_read != -1)
+	global_state.buffer = malloc(sizeof(char) * 1024 * 5);
+	if (global_state.buffer == NULL)
+		fprintf(stderr, "Error: malloc failed\n"), exit(EXIT_FAILURE);
+	line_read = fgets(global_state.buffer, 1023 * 5, file);
+	while (line_read)
 	{
 		opcode = strtok(global_state.buffer, SPACE_DELIMS);
 		if (opcode && opcode[0] != '#')
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 			opcode_function(&global_state.head, global_state.line_number);
 		}
 		global_state.line_number++;
-		line_read = getline(&global_state.buffer, &size, file);
+		line_read = fgets(global_state.buffer, 1024, file);
 	}
 	free_global_state();
 	return (0);
