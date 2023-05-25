@@ -8,6 +8,7 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 Files containing Monty byte codes usually have the `.m` extension. There is not more than one instruction per line.
 
 ### Example (file.m)
+The bytecodes directory contains a sample of these files.
 ```bash
 $ cat file.m
 # Pushing element to the stack
@@ -41,7 +42,7 @@ Then use:
 $ ./monty [filename.m]
 ```
 
-## Output of the eaxmple
+## Output of the running the example file
 ```bash
 $ ./monty file.m
 2
