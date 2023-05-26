@@ -19,7 +19,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	}
 
 	top = (*stack)->n;
-	if (top < 1 || top > 255)
+	if (top < 1 || top > 127)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		exit(EXIT_FAILURE);
