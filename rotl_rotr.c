@@ -54,7 +54,6 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	}
 
 	add_dnodeint(stack, tail->n);
-	
 	free(tail);
 	pre_tail->next = NULL;
 }
