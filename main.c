@@ -21,7 +21,6 @@ void initialise_global_state(FILE *f)
  */
 void free_global_state(void)
 {
-	free(global_state.arg);
 	free(global_state.buffer);
 	fclose(global_state.file);
 	free_dlistint(global_state.head);
