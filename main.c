@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 			opcode_function = get_opc_func(opcode);
 			if (!opcode_function)
 			{
-				fprintf(stderr, "L%i:", global_state.line_number);
+				fprintf(stderr, "L%i: ", global_state.line_number);
 				fprintf(stderr, "unknown instruction %s\n", opcode);
 				free_global_state();
 				exit(EXIT_FAILURE);
